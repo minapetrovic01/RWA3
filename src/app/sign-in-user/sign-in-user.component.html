@@ -1,8 +1,7 @@
-<!-- <p>sign-in-user works!</p>
 <div class="container">
     <div class="main-div">
       <h2>Sign In</h2>
-      <mat-form-field appearance="fill" class="field">
+      <mat-form-field appearance="fill" class="field" color="warn">
         <mat-label>Email</mat-label>
         <input
           matInput
@@ -12,7 +11,7 @@
           #emailInput="ngModel"
         />
       </mat-form-field>
-      <mat-form-field appearance="fill" class="field">
+      <mat-form-field appearance="fill" class="field" color="warn">
         <mat-label>Password</mat-label>
         <input
           matInput
@@ -28,17 +27,16 @@
           }}</mat-icon>
         </button>
       </mat-form-field>
-      <mat-checkbox [(ngModel)]="rememberMe">Remember me</mat-checkbox>
       <div class="button-container">
-        <button mat-raised-button class="btn" (click)="signUp()">Sign Up</button>
+        <button mat-raised-button color="warn" class="btn" (click)="onSignUp()">Sign Up</button>
         <button
-          mat-raised-button
+          mat-raised-button color="warn"
           class="btn"
-          (click)="signIn()"
+          (click)="onSignIn()"
           [disabled]="!emailInput.valid || !passwordInput.valid"
         >
           Sign In
         </button>
       </div>
     </div>
-  </div> -->
+  </div>

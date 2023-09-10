@@ -1,3 +1,5 @@
+import { AuthState } from "./store/user.reducer";
+
 export interface AppState{
-    //song:SongState
+    auth: AuthState;
 }
