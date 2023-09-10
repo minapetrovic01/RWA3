@@ -18,12 +18,26 @@ import{ MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { authReducer } from './store/user.reducer';
 import { UserEffects } from './store/user.effects';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { DisplayPostComponent } from './display-post/display-post.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfilesGridComponent } from './profiles-grid/profiles-grid.component';
+import { FeedPageComponent } from './feed-page/feed-page.component';
+import { MyDecisionsComponent } from './my-decisions/my-decisions.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInUserComponent,
-    SignUpUserComponent
+    SignUpUserComponent,
+    CalculatorComponent,
+    DisplayPostComponent,
+    ProfileComponent,
+    ProfilesGridComponent,
+    FeedPageComponent,
+    MyDecisionsComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
