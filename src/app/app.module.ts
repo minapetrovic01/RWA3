@@ -25,6 +25,9 @@ import { ProfilesGridComponent } from './profiles-grid/profiles-grid.component';
 import { FeedPageComponent } from './feed-page/feed-page.component';
 import { MyDecisionsComponent } from './my-decisions/my-decisions.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './interceptor';
 
 @NgModule({
   declarations: [
@@ -54,8 +57,20 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
+        },
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes: ['http://localhost:4200/auth/login']
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
