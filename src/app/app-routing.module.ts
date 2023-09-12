@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 import { SignUpUserComponent } from './sign-up-user/sign-up-user.component';
 import { FeedPageComponent } from './feed-page/feed-page.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,9 @@ const routes: Routes = [
   },
   {
     path:'feed', component: FeedPageComponent, pathMatch: 'full'	
+  },
+  {
+    path:'my-profile', component: ProfileComponent, pathMatch: 'full'
   },
   {
     path:'**', redirectTo: 'sign-in', pathMatch: 'full'

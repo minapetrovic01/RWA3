@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent {
+  constructor() { }
+
+  saveDecision() {
+    console.log('saveDecision');
+  }
 
 }

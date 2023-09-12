@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { login, loginError, loginsuccess, logout } from "./user.actions";
+import { login, loginError, loginsuccess, logout, signUp } from "./user.actions";
 import { EMPTY, catchError, map, mergeMap, of, switchMap, tap, throwError } from "rxjs";
 import { Router } from "@angular/router";
 import { UserService } from "../user/user.service";
@@ -17,39 +17,7 @@ export class UserEffects {
     private userService: UserService,
     private jwtHelper: JwtHelperService) { }
 
-  // login$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(login),
-  //     mergeMap((action) => {
-  //        this.userService.signIn(action.email, action.password).pipe(
-  //         switchMap((response) => {
-  //           if (response.status == 201) {
-  //             const token = response.body['access_token'];
-  //             const decodedToken: number = this.jwtHelper.decodeToken(token).sub;
-  //             return this.userService.getUser(decodedToken).pipe(
-  //               map((user) => loginsuccess({ user: user.body, token })),
-  //               tap(() => {
-  //                 this.router.navigateByUrl("/feed");
-  //               })
-  //             );
-  //           } else {
-  //             return EMPTY;
-  //           }
-  //         }),
-  //         catchError((error: any) => {
-  //           if (error.status == 401) {
-  //             return of(loginError({ message: "Invalid credentials" }));
-  //           } else {
-  //             return of(loginError({ message: "Something went wrong" })) ;
-  //           }
-  //         })
-  //       );
-
-  //     })
-
-  //   );
-  // },
-  //  );
+ 
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
@@ -96,7 +64,37 @@ export class UserEffects {
     { dispatch: false }
   );
 
- 
+ signUp$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(signUp),
+      mergeMap((action) => {
+        return this.userService.signUp(action.user).pipe(
+          switchMap((response) => {
+            if (response.status == 201) {
+              const token = response.body['access_token'];
+              const decodedToken: number = this.jwtHelper.decodeToken(token).sub;
+              return this.userService.getUser(decodedToken).pipe(
+                map((user) => loginsuccess({ user: user.body, token })),
+                tap(() => {
+                  this.router.navigateByUrl("/feed");
+                })
+              );
+            } else {
+              return EMPTY;
+            }
+          }),
+          catchError((error: any) => {
+            if (error.status == 401) {
+              return of(loginError({ message: "Invalid credentials" }));
+            } else {
+              return of(loginError({ message: "Something went wrong" })) ;
+            }
+          })
+        );
+      })
+    )
+  }
+);
 
 
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { url } from 'environment/environment.dev';
 import { Observable } from 'rxjs';
+import { UserDto } from '../entities/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,11 @@ export class UserService {
 
 
   signUp(
-    email: string,
-    password: string,
-    type: string
+    userDto: UserDto
   ): Observable<HttpResponse<any>> {
     return this.http.post(
-      url + '/auth/signin',
-      { email: email, password: password, type: type },
+      url + '/auth/signup',
+      { ...userDto },
       { observe: 'response' }
     );
   }

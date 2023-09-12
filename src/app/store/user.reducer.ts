@@ -1,10 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "../entities/user";
 import { loginError, loginsuccess, removeToken, setToken, setUser } from "./user.actions";
+import { EntityState } from "@ngrx/entity";
 
 export interface AuthState {
     token: string;
     user: User|null;
+  }
+
+  export interface UsersState extends EntityState<User>{
+    
   }
   
   export const initialState: AuthState = {

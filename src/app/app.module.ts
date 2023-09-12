@@ -16,6 +16,14 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import{ MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatStepperModule} from '@angular/material/stepper';
 import { authReducer } from './store/user.reducer';
 import { UserEffects } from './store/user.effects';
 import { CalculatorComponent } from './calculator/calculator.component';
@@ -28,6 +36,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './interceptor';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +49,8 @@ import { AuthInterceptor } from './interceptor';
     ProfilesGridComponent,
     FeedPageComponent,
     MyDecisionsComponent,
-    HomePageComponent
+    HomePageComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +66,15 @@ import { AuthInterceptor } from './interceptor';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatSliderModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+    MatCardModule,
     MatDividerModule,
+    MatToolbarModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
