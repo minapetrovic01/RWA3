@@ -4,6 +4,9 @@ import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 import { SignUpUserComponent } from './sign-up-user/sign-up-user.component';
 import { FeedPageComponent } from './feed-page/feed-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { MyDecisionsComponent } from './my-decisions/my-decisions.component';
 
 const routes: Routes = [
   {
@@ -20,6 +23,15 @@ const routes: Routes = [
   },
   {
     path:'my-profile', component: ProfileComponent, pathMatch: 'full'
+  },
+  {
+    path: 'calculator',	component:CalculatorComponent, pathMatch: 'full'
+  },
+  {
+    path:'home-page', component:HomePageComponent, pathMatch: 'full'
+  },
+  {
+    path:'my-decisions', component:MyDecisionsComponent, pathMatch: 'full'
   },
   {
     path:'**', redirectTo: 'sign-in', pathMatch: 'full'

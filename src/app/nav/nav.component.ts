@@ -10,42 +10,18 @@ export class NavComponent {
 
   constructor(private router:Router) { }
 
-
-
-  openProfile() {
-    this.router.navigate(['mainPage/profile']);
+  addNewDecision() {
+    this.router.navigate(['/calculator']);
   }
 
-  openProjectForm() {
-    this.router.navigate(['mainPage/projectForm', 'create']);
+  myDecisions() {
+    this.router.navigate(['/my-decisions']);
   }
-
-  openPaperForm() {
-    this.router.navigate(['mainPage/paperForm/', 'create']);
+  searchForOthers() {
+    this.router.navigate(['/feed']);
   }
-
-  openBookForm() {
-    this.router.navigate(['mainPage/bookForm', 'create']);
-  }
-
-  openMyArticles() {
-    this.router.navigate(['mainPage/myArticles']);
-  }
-
-  openMyApplications() {
-    this.router.navigate(['mainPage/myApplications']);
-  }
-
-  openMySubscriptions() {
-    this.router.navigate(['mainPage/mySubscriptions']);
-  }
-
-  openGradeColleagues() {
-    this.router.navigate(['mainPage/gradeColleagues']);
-  }
-
-  openHomePage() {
-    this.router.navigate(['mainPage/homePage']);
+  goToProfile() {
+    this.router.navigate(['/my-profile']);
   }
 
   signOut() {

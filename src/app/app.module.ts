@@ -37,6 +37,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './interceptor';
 import { NavComponent } from './nav/nav.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { NavComponent } from './nav/nav.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatInputModule,
     MatButtonModule,
