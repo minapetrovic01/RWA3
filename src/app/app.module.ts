@@ -38,6 +38,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './interceptor';
 import { NavComponent } from './nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.reducer';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot<AppState>({auth:authReducer}),
+    StoreModule.forRoot<AppState>({auth:authReducer, myDecisions:myDecisionsReducer, searchedDecisions:searchedDecisionsReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

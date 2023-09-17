@@ -28,16 +28,17 @@
                 matInput
                 type="number"
                 formControlName="criteriaNumber"
-                placeholder="Number of criteria:"
+                placeholder="Number of criteria"
               />
             </mat-form-field>
             <div>
               <button
                 mat-button
-                color="basic"
+                color="primary"
                 style="float: right"
                 type="button"
                 matStepperNext
+                (click)="saveDecision()"
               >
                 Next
               </button>

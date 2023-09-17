@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { routerGo } from '../store/router.actions';
 import { Router } from '@angular/router';
 import { login } from '../store/user.actions';
 
