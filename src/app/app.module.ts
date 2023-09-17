@@ -39,6 +39,7 @@ import { AuthInterceptor } from './interceptor';
 import { NavComponent } from './nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.reducer';
+import { DecisionsEffects } from './store/decisions.effects';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects,DecisionsEffects]),
     BrowserAnimationsModule,
     MatFormFieldModule,
     FormsModule,

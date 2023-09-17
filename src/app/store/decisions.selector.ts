@@ -10,7 +10,9 @@ export const selectSearchedDecisionsFeature=createSelector(
 
 export const selectSearchedDecisions=createSelector(
     selectSearchedDecisionsFeature,
-    (state) => state.ids.map(id => state.entities[id]).filter(decision => decision !== undefined)
+    (state) => state.ids.map(id => state.entities[id])
+    .filter(decision => decision !== undefined)
+    .map(decision => <Decision>decision)
 );
 
 export const selectMyDecisionsFeature=createSelector(

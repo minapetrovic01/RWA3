@@ -16,6 +16,7 @@ export class DisplayPostComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.decision);
     if(this.decision){
       console.log(this.decision);
       this.criteriaString=this.makeCriteriaString();
@@ -36,7 +37,7 @@ export class DisplayPostComponent implements OnInit {
         }
       }
     }
-    return alternativesString+"\n"+gradesString;
+    return "\n" +alternativesString+"\n"+gradesString;
   }
 
   makeCriteriaString():string{
@@ -52,7 +53,7 @@ export class DisplayPostComponent implements OnInit {
         }
       }
     }
-    return criteriaString+"\n"+gradesString;
+    return "\n" +criteriaString+"\n"+gradesString;
   }
 
 }
