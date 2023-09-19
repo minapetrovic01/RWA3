@@ -40,6 +40,8 @@ import { NavComponent } from './nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.reducer';
 import { DecisionsEffects } from './store/decisions.effects';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { DecisionsEffects } from './store/decisions.effects';
     MatSnackBarModule,
     MatStepperModule,
     MatSidenavModule,
+    MatGridListModule,
     MatListModule,
     MatMenuModule,
     MatCardModule,
