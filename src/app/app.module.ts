@@ -41,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.reducer';
 import { DecisionsEffects } from './store/decisions.effects';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {NgChartsModule} from 'ng2-charts';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatStepperModule,
     MatSidenavModule,
     MatGridListModule,
+    NgChartsModule,
     MatListModule,
     MatMenuModule,
     MatCardModule,

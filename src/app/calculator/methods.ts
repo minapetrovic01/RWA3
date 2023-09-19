@@ -58,6 +58,9 @@ export function TOPSIS(matrixOfGrades:number[][],weights:number[],criteriaNumber
  
  function normalizeWeights(weights:number[]):number[]{
      const sum= weights.reduce((a, b) => a + b, 0);
+     if(sum===0){
+         return weights;
+     }
      const result:number[] = weights.map((value) => value / sum);
      return result;
  }

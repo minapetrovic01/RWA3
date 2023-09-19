@@ -8,75 +8,106 @@ import { TOPSIS } from './methods';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { createDecision } from '../store/decisions.actions';
+import { Chart, ChartOptions, LabelItem } from 'chart.js';
 
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })
-export class CalculatorComponent implements OnInit{
+export class CalculatorComponent implements OnInit {
 
-  decision:DecisionDto = new DecisionDto("","");
-  alternativeNumber:number = 0;
-  criterionNumber:number = 0;
-  alternatives:AlternativeDto[] = [];
-  criterias:CriteriaDto[] = [];
-  matrix:number[][] = [];
-  weights:number[] = [];
+  public chart: any = null;
 
-  altcritFormGroup!:FormGroup;
-  valuesFormGroup!:FormGroup;
-  resultsFormGroup!:FormGroup;
+  decision: DecisionDto = new DecisionDto("", "");
+  alternativeNumber: number = 0;
+  criterionNumber: number = 0;
+  alternatives: AlternativeDto[] = [];
+  criterias: CriteriaDto[] = [];
+  matrix: number[][] = [];
+  weights: number[] = [];
 
-  constructor(  private _formBuilder: FormBuilder, private store:Store<AppState>) {
+  altcritFormGroup!: FormGroup;
+  valuesFormGroup!: FormGroup;
+  resultsFormGroup!: FormGroup;
 
-   }
+  constructor(private _formBuilder: FormBuilder, private store: Store<AppState>) {
+
+  }
 
   ngOnInit() {
-    this.altcritFormGroup =this._formBuilder.group({
-      name: ['',Validators.required],
-      description: ['',Validators.required],
-      alternativeNumber: ['',Validators.required],
-      criteriaNumber: ['',Validators.required],
-     
+    this.altcritFormGroup = this._formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      alternativeNumber: ['', Validators.required],
+      criteriaNumber: ['', Validators.required],
+
     });
-   
-      
+
+
   }
 
   saveDecision() {
     console.log('saveDecision');
-    this.decision = new DecisionDto(this.altcritFormGroup.value.name,this.altcritFormGroup.value.description);
+    this.decision = new DecisionDto(this.altcritFormGroup.value.name, this.altcritFormGroup.value.description);
     this.alternativeNumber = this.altcritFormGroup.value.alternativeNumber;
     this.criterionNumber = this.altcritFormGroup.value.criteriaNumber;
     this.resetAlternativesAndCriterias();
-    for(let i=0;i<this.alternativeNumber;i++){
-      this.alternatives.push(new AlternativeDto("Alternative "+(i+1),0));
+    for (let i = 0; i < this.alternativeNumber; i++) {
+      this.alternatives.push(new AlternativeDto("Alternative " + (i + 1), 0));
     }
-    for(let i=0;i<this.criterionNumber;i++){
-      this.criterias.push(new CriteriaDto("Criteria "+(i+1),0));
+    for (let i = 0; i < this.criterionNumber; i++) {
+      this.criterias.push(new CriteriaDto("Criteria " + (i + 1), 0));
     }
-    this.matrix=Array.from({ length: this.alternativeNumber }, () => Array.from({ length: this.criterionNumber }, () => 0));
+    this.matrix = Array.from({ length: this.alternativeNumber }, () => Array.from({ length: this.criterionNumber }, () => 0));
   }
   resetAlternativesAndCriterias() {
-    this.alternatives=[];
-    this.criterias=[];
+    this.alternatives = [];
+    this.criterias = [];
   }
   doCalculations() {
-    this.weights=this.criterias.map(c=>c.weight);
+    this.weights = this.criterias.map(c => c.weight);
     console.log(this.weights);
-    const result:number[] = TOPSIS(this.matrix,this.weights,this.criterionNumber,this.alternativeNumber);
+    const result: number[] = TOPSIS(this.matrix, this.weights, this.criterionNumber, this.alternativeNumber);
     console.log(result);
-    for(let i=0;i<this.alternativeNumber;i++){
-      this.alternatives[i].percentage=result[i];
+    for (let i = 0; i < this.alternativeNumber; i++) {
+      this.alternatives[i].percentage = Math.floor( result[i]);
     }
     this.plotPie();
   }
-  plotPie(){
+  plotPie() {
+    this.chart = new Chart("MyChart", {
+      type: 'doughnut', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: this.alternatives.map(a => a.name),
+        datasets: [
+          {
+            label: "Decision",
+            data: this.alternatives.map(a => a.percentage),
+            backgroundColor: this.generateRandomColors(this.alternativeNumber),
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 2.5
+      }
+
+    });
 
   }
   saveDecisionAndDoCalculations() {
-    this.store.dispatch(createDecision({decision:this.decision,alternatives:this.alternatives,criterias:this.criterias}));
+    this.store.dispatch(createDecision({ decision: this.decision, alternatives: this.alternatives, criterias: this.criterias }));
+  }
+   generateRandomColors(n: number) {
+    const colors = [];
+  
+    for (let i = 0; i < n; i++) {
+      const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+      colors.push(randomColor);
+    }
+  
+    return colors;
   }
 
 }

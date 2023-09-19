@@ -64,7 +64,7 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Grade alternatives by criteria</ng-template>
-        <mat-grid-list cols="{{criterionNumber+1}}" >
+        <mat-grid-list cols="{{criterionNumber+1}}">
           <mat-grid-tile>
             <mat-form-field appearance="fill" class="field">
               <input matInput type="text" value="A/C" disabled />
@@ -75,14 +75,7 @@
               <input matInput type="text" [(ngModel)]="criteria.name" value=criteria.name disabled />
             </mat-form-field>
           </mat-grid-tile>
-          <!-- <div *ngFor="let alternative of alternatives; let i=index ">
-            <mat-grid-tile >
-              <mat-form-field appearance="fill" class="field">
-                <input matInput type="text" [(ngModel)]="alternative.name" value=alternative.name disabled />
-              </mat-form-field>
-            </mat-grid-tile>
-            
-          </div> -->
+
           <ng-container *ngFor="let alternative of alternatives; let i=index">
             <mat-grid-tile>
               <mat-form-field appearance="fill" class="field">
@@ -110,14 +103,17 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Your decision is done!</ng-template>
+        <div class="chart-container">
+          <canvas id="MyChart">{{ chart }}</canvas>
+        </div>
         <div style="margin: 30px">
-          <h2 style="text-align: center">Your project is ready!</h2>
+          <h2 style="text-align: center">Your decision is ready!</h2>
           <div>
             <button mat-button color="basic" style="float: left; margin-bottom: 20px" type="button" matStepperPrevious>
               Back
             </button>
             <button mat-raised-button color="primary" style="float: right; margin-bottom: 20px" type="submit"
-              (click)="saveDecision()">
+              (click)="saveDecisionAndDoCalculations()">
               Save
             </button>
           </div>
