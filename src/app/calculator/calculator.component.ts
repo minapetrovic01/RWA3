@@ -10,6 +10,7 @@ import { AppState } from '../app.state';
 import { createDecision } from '../store/decisions.actions';
 import { Chart, ChartOptions, LabelItem } from 'chart.js';
 import { Router } from '@angular/router';
+import { selectIsAuth } from '../store/user.selectors';
 
 @Component({
   selector: 'app-calculator',
@@ -29,8 +30,7 @@ export class CalculatorComponent implements OnInit {
   weights: number[] = [];
 
   altcritFormGroup!: FormGroup;
-  valuesFormGroup!: FormGroup;
-  resultsFormGroup!: FormGroup;
+  isGuest:boolean=false;
 
   constructor(private _formBuilder: FormBuilder,
      private store: Store<AppState>,
@@ -44,9 +44,13 @@ export class CalculatorComponent implements OnInit {
       description: ['', Validators.required],
       alternativeNumber: ['', Validators.required],
       criteriaNumber: ['', Validators.required],
-
     });
-
+    this.store.select(selectIsAuth).subscribe(isAuth => {
+      if(!isAuth){
+        this.isGuest=true;
+      }
+    }
+    );
 
   }
 

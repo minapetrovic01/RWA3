@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { Router } from '@angular/router';
 import { login } from '../store/user.actions';
+import { selectIsAuth } from '../store/user.selectors';
 
 @Component({
   selector: 'app-sign-in-user',
@@ -17,6 +18,7 @@ export class SignInUserComponent implements OnInit, OnDestroy{
   constructor(private store: Store<AppState>, private router:Router) { }
 
   ngOnInit(): void {
+   
   }
 
   ngOnDestroy(): void {
@@ -29,6 +31,9 @@ export class SignInUserComponent implements OnInit, OnDestroy{
 
   onSignUp(): void {
     this.router.navigate(['sign-up']);
+  }
+  onGuestAccess(): void {
+    this.router.navigate(['calculator']);
   }
 
 

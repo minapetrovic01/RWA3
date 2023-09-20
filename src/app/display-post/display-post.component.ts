@@ -26,34 +26,28 @@ export class DisplayPostComponent implements OnInit {
 
   makeAlternativesString():string{
     let alternativesString:string="Alternatives: ";
-    let gradesString:string="Grades: ";
     if(this.decision){
       for(let i=0;i<this.decision.alternatives.length;i++){
-        alternativesString+=this.decision.alternatives[i].name;
-        gradesString+=""+this.decision.alternatives[i].percentage+"%";
+        alternativesString+=this.decision.alternatives[i].name+` (${this.decision.alternatives[i].percentage})`;
         if(i<this.decision.alternatives.length-1){
           alternativesString+=", ";
-          gradesString+=", ";
         }
       }
     }
-    return "\n" +alternativesString+"\n"+gradesString;
+    return alternativesString;
   }
 
   makeCriteriaString():string{
     let criteriaString:string="Criteria: ";
-    let gradesString:string="Weights: ";
     if(this.decision){
       for(let i=0;i<this.decision.criterias.length;i++){
-        criteriaString+=this.decision.criterias[i].name;
-        gradesString+=""+this.decision.criterias[i].weight;
+        criteriaString+=this.decision.criterias[i].name+` (${this.decision.criterias[i].weight})`;
         if(i<this.decision.criterias.length-1){
           criteriaString+=", ";
-          gradesString+=", ";
         }
       }
     }
-    return "\n" +criteriaString+"\n"+gradesString;
+    return criteriaString;
   }
 
 }

@@ -1,3 +1,14 @@
+.my-decisions{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Three columns of equal width */
+    grid-template-rows: repeat(5, minmax(auto, max-content));
+    gap: 10px;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+}
 .headline{
     font-size: 20px;
     font-weight: bold;
