@@ -30,3 +30,7 @@ export const createDecision = createAction(
     '[Decisions] Create Decision',
     props<{ decision: DecisionDto,alternatives:AlternativeDto[], criterias:CriteriaDto[] }>()
 );
+
+export const emptySearch = createAction(
+    '[Decisions] Empty Search'
+);

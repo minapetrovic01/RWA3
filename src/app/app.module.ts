@@ -29,7 +29,6 @@ import { UserEffects } from './store/user.effects';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { DisplayPostComponent } from './display-post/display-post.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfilesGridComponent } from './profiles-grid/profiles-grid.component';
 import { FeedPageComponent } from './feed-page/feed-page.component';
 import { MyDecisionsComponent } from './my-decisions/my-decisions.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -53,7 +52,6 @@ import { BackgroundCanvasComponent } from './background-canvas/background-canvas
     CalculatorComponent,
     DisplayPostComponent,
     ProfileComponent,
-    ProfilesGridComponent,
     FeedPageComponent,
     MyDecisionsComponent,
     HomePageComponent,

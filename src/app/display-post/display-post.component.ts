@@ -16,9 +16,7 @@ export class DisplayPostComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.decision);
     if(this.decision){
-      console.log(this.decision);
       this.criteriaString=this.makeCriteriaString();
       this.alternativesString=this.makeAlternativesString();
     }

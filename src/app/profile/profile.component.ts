@@ -7,6 +7,7 @@ import { AppState } from '../app.state';
 import { selectUserData } from '../store/user.selectors';
 import { createAvatar } from '@dicebear/core';
 import { lorelei } from '@dicebear/collection';
+import { deleteUser } from '../store/user.actions';
 
 @Component({
   selector: 'app-profile',
@@ -76,60 +77,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   deleteProfile() {
-    // const dialogRef = this.dialog.open(DeleteProfileDialogComponent);
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.userService
-    //       .deleteUser(this.profileToDisplay.user.id)
-    //       .subscribe(() => {
-    //         this.routeGuard.setGuardStatus(true);
-    //         this.router.navigate(['/signUpUser']);
-    //       });
-    //   } else {
-    //     // User canceled deletion
-    //   }
-    // });
+   this.store.dispatch(deleteUser({ id: this.profileToDisplay.id }));
+   this.router.navigateByUrl('/sign-in');
   }
 
-//   subscribeToUser() {
-//     if (this.profileToDisplay === null)
-//       throw new Error('Passed profile is null, something went wrong.');
-//     this.userService
-//       .subscribeTo(
-//         this.profileService.profile.user!.id,
-//         this.profileToDisplay.user!.id
-//       )
-//       .subscribe(() => {
-//         if (this.profileToDisplay === null)
-//           throw new Error('Passed profile is null, something went wrong.');
-//         this.articleStateService.updateSubscriptionStatus(
-//           this.profileToDisplay.user!.id,
-//           true
-//         );
-//         this.amSubscribed = true;
-//         this.openSnackBar('Successful subscription!');
-//       });
-//   }
 
-//   unsubscribeFromUser() {
-//     if (this.profileToDisplay === null)
-//       throw new Error('Passed profile is null, something went wrong.');
-//     this.userService
-//       .unsubscribeFrom(
-//         this.profileService.profile.user!.id,
-//         this.profileToDisplay.user!.id
-//       )
-//       .subscribe(() => {
-//         if (this.profileToDisplay === null)
-//           throw new Error('Passed profile is null, something went wrong.');
-//         this.articleStateService.updateSubscriptionStatus(
-//           this.profileToDisplay.user!.id,
-//           false
-//         );
-//         this.amSubscribed = false;
-//         this.openSnackBar('Successful unsubscription!');
-//       });
-//   }
 
  }

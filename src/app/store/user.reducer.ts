@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "../entities/user";
-import { loginError, loginsuccess, removeToken, setToken, setUser } from "./user.actions";
+import { loginError, loginsuccess, logout, removeToken, setToken, setUser } from "./user.actions";
 import { EntityState } from "@ngrx/entity";
 
 export interface AuthState {
@@ -24,4 +24,5 @@ export interface AuthState {
     on(setUser, (state, { user }): AuthState => ({ ...state, user })),
     on(loginsuccess, (state, { user, token }): AuthState => ({ ...state, user, token })),
     on(loginError, (state, { message }): AuthState => ({ ...state, user: null, token: "" })),
+    on(logout, (state): AuthState => ({ ...state, user: null, token: "" }))
   );

@@ -25,7 +25,6 @@ export class SignInUserComponent implements OnInit, OnDestroy{
   }
 
   onSignIn(): void {
-    console.log('onSignIn');
     this.store.dispatch(login({email:this.email, password:this.password}));
   }
 

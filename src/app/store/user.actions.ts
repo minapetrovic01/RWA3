@@ -35,3 +35,10 @@ export const login = createAction(
     "[Auth] Sign Up",
     props<{ user: UserDto }>()
   );
+
+  export const deleteUser = createAction(
+    "[Auth] Delete User",
+    props<{ id: number }>()
+  );
+
+  

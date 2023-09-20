@@ -31,4 +31,11 @@ export const searchedDecisionsReducer=createReducer(
         return adapterDecisions.setAll(searchedDecisions, state);
     }),
 );
+
+export const emptySearchReducer=createReducer(
+    initialDecisionsState,
+    on(loadSearchedDecisionsSuccess, (state, { searchedDecisions }) => {
+        return adapterDecisions.removeAll(state);
+    }),
+);
     

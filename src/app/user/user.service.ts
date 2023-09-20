@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { url } from 'environment/environment.dev';
 import { Observable } from 'rxjs';
 import { UserDto } from '../entities/user.dto';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store:Store<AppState>) { }
 
 
   signUp(
@@ -38,12 +40,18 @@ export class UserService {
     });
   }
 
-  getUser(id: number): Observable<HttpResponse<any>> {
-    return this.http.get(url + '/user/' + id, { observe: 'response' });
+  getUser(id: number,token:string): Observable<HttpResponse<any>> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(url + '/user/' + id, { headers:headers, observe: 'response' });
   }
 
   deleteUser(id: number): Observable<HttpResponse<any>> {
     return this.http.delete(url + '/user/' + id, { observe: 'response' });
+  }
+
+  getProfile(token:string): Observable<HttpResponse<any>> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(url + '/user/profile', { headers:headers, observe: 'response' });
   }
 
   checkIfSubscribed(

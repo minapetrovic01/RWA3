@@ -24,7 +24,6 @@ export class DecisionService {
     ).subscribe((userId)=>{
       this.userId=userId;
     });
-    console.log(this.userId);
 ;
     return this.http.get(url+`/decision/owner/${this.userId}`,{observe:'response'});
     

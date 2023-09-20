@@ -29,7 +29,6 @@ export class SignUpUserComponent implements OnInit, OnDestroy{
   }
 
   onSignUp(): void {
-    console.log('onSignUp');
     this.store.dispatch(signUp({user:this.user}));
   }
 

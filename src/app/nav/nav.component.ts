@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
+import { logout } from '../store/user.actions';
+import { emptySearch } from '../store/decisions.actions';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private store:Store<AppState>) { }
 
   addNewDecision() {
     this.router.navigate(['/calculator']);
@@ -28,6 +32,8 @@ export class NavComponent {
    
     // this.mainPageGuard.setGuardStatus(false);
     // this.profileGuard.setGuardStatus(false);
+    this.store.dispatch(logout());
+    this.store.dispatch(emptySearch());
 
     this.router.navigate(['/sign-in']);
   }

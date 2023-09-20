@@ -55,7 +55,6 @@ export class CalculatorComponent implements OnInit {
   }
 
   saveDecision() {
-    console.log('saveDecision');
     this.decision = new DecisionDto(this.altcritFormGroup.value.name, this.altcritFormGroup.value.description);
     this.alternativeNumber = this.altcritFormGroup.value.alternativeNumber;
     this.criterionNumber = this.altcritFormGroup.value.criteriaNumber;
@@ -74,9 +73,7 @@ export class CalculatorComponent implements OnInit {
   }
   doCalculations() {
     this.weights = this.criterias.map(c => c.weight);
-    console.log(this.weights);
     const result: number[] = TOPSIS(this.matrix, this.weights, this.criterionNumber, this.alternativeNumber);
-    console.log(result);
     for (let i = 0; i < this.alternativeNumber; i++) {
       this.alternatives[i].percentage = Math.floor(result[i]);
     }
