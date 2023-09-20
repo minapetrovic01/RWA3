@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { createDecision } from '../store/decisions.actions';
 import { Chart, ChartOptions, LabelItem } from 'chart.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calculator',
@@ -31,7 +32,9 @@ export class CalculatorComponent implements OnInit {
   valuesFormGroup!: FormGroup;
   resultsFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private store: Store<AppState>) {
+  constructor(private _formBuilder: FormBuilder,
+     private store: Store<AppState>,
+     private router : Router) {
 
   }
 
@@ -71,15 +74,15 @@ export class CalculatorComponent implements OnInit {
     const result: number[] = TOPSIS(this.matrix, this.weights, this.criterionNumber, this.alternativeNumber);
     console.log(result);
     for (let i = 0; i < this.alternativeNumber; i++) {
-      this.alternatives[i].percentage = Math.floor( result[i]);
+      this.alternatives[i].percentage = Math.floor(result[i]);
     }
     this.plotPie();
   }
   plotPie() {
     this.chart = new Chart("MyChart", {
-      type: 'doughnut', //this denotes tha type of chart
+      type: 'doughnut',
 
-      data: {// values on X-Axis
+      data: {
         labels: this.alternatives.map(a => a.name),
         datasets: [
           {
@@ -98,15 +101,16 @@ export class CalculatorComponent implements OnInit {
   }
   saveDecisionAndDoCalculations() {
     this.store.dispatch(createDecision({ decision: this.decision, alternatives: this.alternatives, criterias: this.criterias }));
+    this.router.navigate(['/my-decisions']);
   }
-   generateRandomColors(n: number) {
+  generateRandomColors(n: number) {
     const colors = [];
-  
+
     for (let i = 0; i < n; i++) {
       const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
       colors.push(randomColor);
     }
-  
+
     return colors;
   }
 

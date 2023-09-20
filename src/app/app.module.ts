@@ -42,6 +42,7 @@ import { myDecisionsReducer, searchedDecisionsReducer } from './store/decisions.
 import { DecisionsEffects } from './store/decisions.effects';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgChartsModule} from 'ng2-charts';
+import { BackgroundCanvasComponent } from './background-canvas/background-canvas.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {NgChartsModule} from 'ng2-charts';
     FeedPageComponent,
     MyDecisionsComponent,
     HomePageComponent,
-    NavComponent
+    NavComponent,
+    BackgroundCanvasComponent
   ],
   imports: [
     BrowserModule,

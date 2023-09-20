@@ -16,7 +16,8 @@
     </div>
     <div *ngIf="searchedDecisions.length === 0">
         <p>You have not searched for any decisions yet.</p>
-        <div *ngFor="let searchedDecision of searchedDecisions">
-            <app-display-post [decision]="searchedDecision"></app-display-post>
-        </div>
     </div>
+    <div *ngFor="let searchedDecision of searchedDecisions">
+        <app-display-post [decision]="searchedDecision"></app-display-post>
+    </div>
+</div>
